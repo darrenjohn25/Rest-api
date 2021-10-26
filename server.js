@@ -19,12 +19,16 @@ app.get("/", (req, res) => res.send("Express Check"));
 
 // //admin routes
 app.use("/admin/newUser", require("./src/routes/adminuser/newUser")); //register new user role=admin
-app.use("/admin/updateUser", require("./src/routes/adminuser/updateUser")); //login user role=admin
-
+app.use("/admin/updateUser", require("./src/routes/adminuser/updateUser")); //login and update user role=admin
+app.use(
+  "/admin/getLoggedUser",
+  require("./src/routes/adminuser/loggedUser")
+); //login and get logged user user role=admin
 
 // //user routes
 app.use("/newUser", require("./src/routes/clientuser/newUser")); //register new user role=user
-app.use("/updateUser", require("./src/routes/clientuser/updateUser")); //login user role=user
+app.use("/updateUser", require("./src/routes/clientuser/updateUser")); //login and update user role=user
+app.use("/getLoggedUser", require("./src/routes/clientuser/loggedUser")); //login and get logged user role=user
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
